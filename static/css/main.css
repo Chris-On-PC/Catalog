@@ -1,0 +1,36 @@
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+.login-container{
+	margin: auto;
+	text-align: center;
+
+}
+.flash_container{
+	padding-top: 56px;
+	color: red;
+	text-align: center;
+}
+.padding-bottom{
+	min-height: 20px;
+}
+.btn_edits{
+	background-color: white;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: #808080; 
+}
+.btn_edits:hover{
+	background-color: #1E90FF;
+	color: white;
+}
+.drop_box{
+	border-radius: 5px;
+}

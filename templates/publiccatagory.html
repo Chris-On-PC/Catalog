@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "sub_header.html" %}
+
+
+<!--Catagories Section-->
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+        	<h1 class="my-4">Categories</h1>
+          <div class="list-group">
+            
+		  	<a href = "{{url_for('showCatagory', catagory_name = catagory.name)}}" class="list-group-item">{{catagory.name}}</a>
+			
+			{%if 'username' in session %}
+			<a href="{{url_for('newCatagory')}}" class="list-group-item"> Add a catagory </a>
+			{% endif %}
+          </div>
+        </div>
+        <div class="col-lg-9">
+        <h1 class="my-4">{{catagory.name}}</h1>
+        	{% for item in items %}
+		  		{% if item.catagory_id == catagory.cat_id %}
+		  		<div class="card mt-4">
+            	<div class="card-body">
+            		<a href = "{{url_for('showItem', catagory_name = catagory.name, item_name = item.name)}}"><h3 class="card-title">{{item.name}}</h3></a>
+              		<h4>{{catagory.name}}</h4>
+              		<h4>${{item.price_retail}}</h4>
+              		<p class="card-text">{{item.description}}</p>
+            	</div>
+            	</div>
+		  		{% endif %}
+		  	{% endfor %}	
+			
+			{%if 'username' in session %}
+			<div class="card mt-4">
+            <div class="card-body">
+            <a href="{{url_for('newItem')}}"><h3 class="card-title"> Add an item</h3></a>
+            </div>
+            </div>
+			{% endif %}
+
+        </div>
+    </div>
+</div> 
+
+{% include "footer.html" %}	
+{% endblock %}

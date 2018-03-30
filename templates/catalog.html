@@ -1,0 +1,62 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+<div class="container">
+<div class="flash_container">
+    <div class = 'flash'>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <h4><strong> {{ message }} </strong></h4>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</div>
+
+	<div class="row">
+		<div class="col-lg-3">
+        	<h1 class="my-4">Categories</h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Latest</a>
+            {% for cat in catagory %}
+		  	<a href = "{{url_for('showCatagory', catagory_name = cat.name)}}" class="list-group-item">{{cat.name}}</a>
+			{% endfor %}
+			{%if 'username' in session %}
+			<a href="{{url_for('newCatagory')}}" class="list-group-item"> Add a catagory </a>
+			{% endif %}
+          </div>
+        </div>
+        <div class="col-lg-9">
+        <h1 class="my-4">Our Latest Items</h1>
+        	{% for cat in catagory %}
+		  		{% for item in items %}
+		  		{% if item.catagory_id == cat.cat_id%}
+		  		<div class="card mt-4">
+            	<div class="card-body">
+            		<a href = "{{url_for('showItem', catagory_name = cat.name, item_name = item.name)}}"><h3 class="card-title">{{item.name}}</h3></a>
+              		<h4>{{cat.name}}</h4>
+              		<h4>${{item.price_retail}}</h4>
+              		<p class="card-text">{{item.description}}</p>
+            	</div>
+            	</div>
+		  		{% endif %}
+		  		{% endfor %}	
+			{% endfor %}
+			{%if 'username' in session %}
+			<div class="card mt-4">
+            <div class="card-body">
+            <a href="{{url_for('newItem')}}"><h3 class="card-title"> Add an item</h3></a>
+            </div>
+            </div>
+			{% endif %}
+
+        </div>
+    </div>
+</div> 
+
+
+{% include "footer.html" %}
+{% endblock %}

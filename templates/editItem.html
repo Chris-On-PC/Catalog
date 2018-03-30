@@ -1,0 +1,62 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "sub_header.html" %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+        	<h1 class="my-4">Categories</h1>
+          <div class="list-group">
+          	{% for cat in catagory %}
+		  	<a href = "{{url_for('showCatagory', catagory_name = cat.name)}}" class="list-group-item">{{cat.name}}</a>
+			{% endfor %}
+          </div>
+        </div>
+        <div class="col-lg-9">
+        <h1 class="my-4">Edit {{ items.name }}</h1>
+
+		  	<div class="card mt-4">
+            	<div class="card-body">
+            		<div class="row">
+		<div class="col-md-12 col-md-offset-1 padding-top">
+			{% for cat in catagory%}
+			{% if items.catagory_id == cat.cat_id%}
+			<form action="{{ url_for('editItem',catagory_name = cat.name, item_name = items.name)}}" method = "post">
+				<div class="form-group">
+				<label for="name">Name:</label>
+				<input type ="text" class="form-control" maxlength="100" name="name"  value="{{items.name }}">
+				<label for="description">Description:</label>
+				<input type ="text" class="form-control" maxlength="250" name="description" value="{{items.description }}">
+				<label for="price_retail">Retail Price:</label>
+				<input type ="text" class="form-control" maxlength="250" name="price_retail" value="{{items.price_retail }}">
+				<label for="price_wholesale">Wholesale Price:</label>
+				<input type ="text" class="form-control" maxlength="250" name="price_wholesale" value="{{items.price_wholesale }}">
+				<label for="picture">Link to picture:</label>
+				<input type ="text" class="form-control" maxlength="250" name="picture" value="{{items.picture }}">
+				<label for="quantity">Quantity:</label>
+				<input type ="number" class="form-control" maxlength="250" name="quantity" value="{{items.quantity }}">
+				<label for="category">Category:</label><br>
+				<select id = "catagory_id" name="catagory_id" class="drop_box">
+				{% for cat in catagory%}
+					<option class="form-control" maxlength="25" value={{cat.cat_id}}>{{cat.name}}</option>
+  				{% endfor %}
+				</select>
+				<div class="padding-bottom"></div>
+				<button type="submit" class="btn btn_edits" id="submit" type="submit">Save</button>
+					<a href = '{{url_for('showMain')}}'>
+						<button class="btn btn_edits">Cancel</button>
+					</a>
+				</div>
+			</form>
+			{% endif %}
+			{% endfor %}
+				</div>
+			</div>
+			</div>
+         </div>
+    </div>
+</div>
+</div>
+
+{% include "footer.html" %}	
+{% endblock %}

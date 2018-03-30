@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>Evermore </title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
+		<!-- Bootstrap core CSS -->
+    	<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+
+    	<!-- Custom styles for this template -->
+    	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	</head>
+	<body>
+			
+		{% block content %}
+		{% endblock %}
+    	<!-- Bootstrap core JavaScript -->
+    	<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+	</body>
+</html>

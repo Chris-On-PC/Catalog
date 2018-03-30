@@ -1,0 +1,64 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "sub_header.html" %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+        	<h1 class="my-4">Category</h1>
+          <div class="list-group">
+		  	<a href = "{{url_for('showCatagory', catagory_name = catagory_name)}}" class="list-group-item">{{catagory_name}}</a>
+			{%if 'username' in session %}
+			<a href="{{url_for('newCatagory')}}" class="list-group-item"> Add a catagory </a>
+			{% endif %}
+          </div>
+        </div>
+        <div class="col-lg-9">
+        <h1 class="my-4">{{ items.name }}</h1>
+
+
+		  		<div class="card mt-4">
+		  		{%if items.picture%}
+				<img lass="card-img-top img-fluid" src={{ url_for('static', filename='images/Products/{0}'.format(items.picture)) }} alt="item logo" class="product-img">
+				{%else%}
+		  		<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+		  		{% endif %}
+            	<div class="card-body">
+            		<div class="row">
+            			<div class="col-lg-6">
+            				<h4>Retail Price: ${{items.price_retail}}</h4>
+            			</div>
+            			<div class="col-lg-6">
+            				<h4>Wholesale Price: ${{items.price_wholesale}}</h4>
+            			</div>
+            		</div>
+            		<div class="row">
+            			<div class="col-lg-6">
+            				<h4>Quantity: {{items.quantity}}</h4>
+            			</div>
+            		</div>
+            		
+            		<p class="card-text">{{items.description}}</p>
+            		<div class="row">
+						<div class="col-md-6">
+							<h5>Current Owner: {{items.user_id}}</h5>
+						</div>
+					</div>
+            	</div>
+            	</div>
+
+
+			{%if 'username' in session %}
+			<div class="card mt-4">
+            <div class="card-body">
+            <a href="{{url_for('newItem')}}"><h3 class="card-title"> Add an item</h3></a>
+            </div>
+            </div>
+			{% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}	
+{% endblock %}

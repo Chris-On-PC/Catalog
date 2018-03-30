@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "sub_header.html" %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+        	<h1 class="my-4">Categories</h1>
+          <div class="list-group">
+		  	<a href = "{{url_for('showCatagory', catagory_name = catagory.name)}}" class="list-group-item">{{catagory.name}}</a>
+          </div>
+        </div>
+        <div class="col-lg-9">
+        <h1 class="my-4">Edit {{catagory.name}}</h1>
+
+		  	<div class="card mt-4">
+            	<div class="card-body">
+            		<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+			<form action="{{ url_for('editCatagory',catagory_name = catagory.name)}}" method = "post">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type ="text" class="form-control" name="name" value="{{catagory.name }}">
+					<label for="description">Description:</label>
+					<input type ="text" class="form-control" name="description" value="{{catagory.description }}">
+					<div class="padding-bottom"></div>
+					<button type="submit" class="btn btn_edits" id="submit" type="submit">Save</button>
+					<a href = '{{url_for('showMain')}}'>
+						<button class="btn btn_edits">Cancel</button>
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+				</div>
+			</div>
+         </div>
+    </div>
+</div>
+
+{% include "footer.html" %}	
+{% endblock %}
